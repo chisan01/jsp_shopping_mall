@@ -1,3 +1,6 @@
+<%@ page import="com.example.myhompage.product.ProductDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.myhompage.product.Product" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -33,14 +36,30 @@
 <main>
     <aside id="category">
         <ul>
-            <li><a target="iframe1" href="computer.html">전체</a></li>
-            <li><a target="iframe1" href="computer.html">도서</a></li>
-            <li><a target="iframe1" href="clothing.html">의류</a></li>
-            <li><a target="iframe1" href="music.html">식품</a></li>
+            <li><a target="iframe1" href="./index.jsp">전체</a></li>
+            <li><a target="iframe1" href="./index_book.jsp">도서</a></li>
+            <li><a target="iframe1" href="./index_clothes.jsp">의류</a></li>
+            <li><a target="iframe1" href="./index_food.jsp">식품</a></li>
         </ul>
     </aside>
     <section id="popular"></section>
-    <section id="normal"></section>
+    <section id="normal">
+        <div class="container">
+            <%
+                ProductDAO productDAO = new ProductDAO();
+                ArrayList<Product> list = productDAO.findAllByCategory("all");
+                for(Product p : list) {
+            %>
+            <div class="item" style="border: 1px solid black; width: fit-content;">
+                <img src="./img/<%=p.getImageSrc()%>" alt="<%=p.getName()%>">
+                <p><%=p.getName()%></p>
+                <p><%=p.getPrice()%>원</p>
+            </div>
+            <%
+                }
+            %>
+        </div>
+    </section>
 </main>
 <footer>
     제작자 GitHub : https://github.com/chisan01
