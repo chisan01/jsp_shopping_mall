@@ -19,8 +19,8 @@
     } else {
     %>
     <button onclick="location.href='./logout.jsp'">로그아웃</button>
-    <button>장바구니</button>
-    <button>구매기록</button>
+    <button onclick="location.href='./shopping_cart.jsp'">장바구니</button>
+    <button onclick="location.href='./order_history.jsp.jsp'">구매기록</button>
     <%
         }
     %>
@@ -33,10 +33,10 @@
 <main>
     <aside id="category">
         <ul>
-            <li><a target="iframe1" href="./index.jsp">전체</a></li>
-            <li><a target="iframe1" href="./index_book.jsp">도서</a></li>
-            <li><a target="iframe1" href="./index_clothes.jsp">의류</a></li>
-            <li><a target="iframe1" href="./index_food.jsp">식품</a></li>
+            <li><a href="./index.jsp">전체</a></li>
+            <li><a href="./index_book.jsp">도서</a></li>
+            <li><a href="./index_clothes.jsp">의류</a></li>
+            <li><a href="./index_food.jsp">식품</a></li>
         </ul>
     </aside>
     <section id="popular"></section>
@@ -45,13 +45,17 @@
             <%
                 ProductDAO productDAO = new ProductDAO();
                 ArrayList<Product> list = productDAO.findAllByCategory("all");
-                for(Product p : list) {
+                for (Product p : list) {
             %>
             <div class="item">
                 <img src="./img/<%=p.getImageSrc()%>" alt="<%=p.getName()%>">
-                <p><%=p.getName()%></p>
+                <p><%=p.getName()%>
+                </p>
                 <p><%=p.getPrice()%>원</p>
-                <button onclick="location.href=''"></button>
+                <form action="add_shopping_cart.jsp" method="POST">
+                    <input type="hidden" name="productId" value="<%=p.getId()%>">
+                    <button type="submit">장바구니에 추가</button>
+                </form>
             </div>
             <%
                 }

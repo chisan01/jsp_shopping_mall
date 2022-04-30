@@ -24,9 +24,11 @@
         response.sendRedirect("index.jsp");
         session.setAttribute("memberId", memberId);
     } catch (Exception e) {
+        e.printStackTrace();
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('" + e.getMessage() + "')");
+        script.println("history.back()");
         script.println("</script>");
     }
 %>
