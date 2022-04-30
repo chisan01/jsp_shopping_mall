@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+<header>
+    <a href="./index.jsp">
+        <h1>SHOPPING MALL</h1>
+    </a>
+</header>
+<main>
+    <form action="register.jsp" method="POST">
+        <h2>회원가입</h2>
+
+        <label for="memberId"><b>아이디</b></label>
+        <input id="memberId" type="text" placeholder="Enter ID" name="id" required>
+
+        <label for="memberPassword"><b>패스워드</b></label>
+        <input id="memberPassword" type="password" placeholder="Enter Password" name="password" required>
+
+        <label for="memberEmail"><b>이메일</b></label>
+        <input id="memberEmail" type="email" placeholder="Email" name="email">
+
+        <button type="reset">재작성</button>
+        <button type="submit">제출</button>
+    </form>
+</main>
+</body>
+</html>
