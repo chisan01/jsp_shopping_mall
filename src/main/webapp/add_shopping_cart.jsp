@@ -16,7 +16,6 @@
 </head>
 <body>
 <%
-    ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
     String memberId = (String) session.getAttribute("memberId");
     if(memberId == null) {
         PrintWriter script = response.getWriter();
@@ -25,6 +24,7 @@
         script.println("location.href = 'login.html'");
         script.println("</script>");
     }
+    ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
     Long productId = Long.parseLong(request.getParameter("productId"));
     System.out.println("productId = " + productId);
     try {

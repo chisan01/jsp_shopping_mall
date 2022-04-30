@@ -20,7 +20,7 @@
     %>
     <button onclick="location.href='./logout.jsp'">로그아웃</button>
     <button onclick="location.href='./shopping_cart.jsp'">장바구니</button>
-    <button onclick="location.href='./order_history.jsp.jsp'">구매기록</button>
+    <button onclick="location.href='./order_history.jsp'">구매기록</button>
     <%
         }
     %>

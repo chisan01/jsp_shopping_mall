@@ -3,6 +3,9 @@
 <%@ page import="com.example.myhompage.product.Product" %>
 <%@ page import="com.example.myhompage.shoppingCart.ShoppingCartDAO" %>
 <%@ page import="com.example.myhompage.shoppingCart.ShoppingCart" %>
+<%@ page import="com.example.myhompage.order.OrderDAO" %>
+<%@ page import="com.example.myhompage.order.Order" %>
+<%@ page import="com.example.myhompage.order.OrderItem" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -16,13 +19,13 @@
         String memberId = (String) session.getAttribute("memberId");
         if (memberId == null) {
     %>
-    <button onclick="location.href='./login.html'">로그인</button>
+    <button onclick="location.href='./login.html'">로그인</ button>
     <%
     } else {
     %>
     <button onclick="location.href='./logout.jsp'">로그아웃</button>
     <button onclick="location.href='./shopping_cart.jsp'">장바구니</button>
-    <button>구매기록</button>
+    <button onclick="location.href='./order_history.jsp'">구매기록</button>
     <%
         }
     %>
@@ -33,47 +36,43 @@
     </a>
 </header>
 <main>
-    <form action="edit_shopping_cart.jsp" method="post">
-        <table>
-            <thead>
-            <tr>
-                <th>선택</th>
-                <th>상품명</th>
-                <th>카테고리</th>
-                <th>가격</th>
-                <th>수량</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%
+    <table>
+        <thead>
+        <tr>
+            <th>구매한 상품</th>
+            <th>구매일</th>
+            <th>총액</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            OrderDAO orderDAO = new OrderDAO();
+            ProductDAO productDAO = new ProductDAO();
+            ArrayList<Order> orderList = orderDAO.findAllByMemberId((String) session.getAttribute("memberId"));
+            String orderName;
+            for (Order order : orderList) {
                 int totalPrice = 0;
-                ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
-                ProductDAO productDAO = new ProductDAO();
-                ArrayList<ShoppingCart> list = shoppingCartDAO.findAllByMemberId((String) session.getAttribute("memberId"));
-                for (int i = 0; i < list.size(); i++) {
-                    Product curProduct = productDAO.findById(list.get(i).getProductId());
-                    totalPrice += curProduct.getPrice() * list.get(i).getAmount();
-            %>
-            <tr>
-                <td><input type="checkbox" name="shopping_cart_id" value="<%=curProduct.getId()%>"></td>
-                <td><%= curProduct.getName() %>
-                </td>
-                <td><%= curProduct.getCategory() %>
-                </td>
-                <td><%= curProduct.getPrice() %>
-                </td>
-                <td><%= list.get(i).getAmount() %>
-                </td>
-            </tr>
-            <%
+                ArrayList<OrderItem> orderItems = orderDAO.findAllOrderItemByOrderId(order.getId());
+                orderName = "<b>" + productDAO.findById(orderItems.get(0).getProductId()).getName() + "</b>";
+                if(orderItems.size() > 1) orderName += " 외 " + (orderItems.size() - 1) + "개";
+                for(OrderItem orderItem : orderItems) {
+                    Product product = productDAO.findById(orderItem.getProductId());
+                    totalPrice += product.getPrice() * orderItem.getAmount();
                 }
-            %>
-            </tbody>
-        </table>
-        <h5><%="총 가격 = " + totalPrice%></h5>
-        <button type="submit" name="action" value="delete">선택한 제품 삭제</button>
-        <button type="submit" name="action" value="buy">선택한 제품 구매</button>
-    </form>
+        %>
+        <tr>
+            <td><%= orderName %>
+            </td>
+            <td><%= order.getOrderedDate() %>
+            </td>
+            <td><%= totalPrice %>
+            </td>
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
 </main>
 <footer>
     제작자 GitHub : https://github.com/chisan01

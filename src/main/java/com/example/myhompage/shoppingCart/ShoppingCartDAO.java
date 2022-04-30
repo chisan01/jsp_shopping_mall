@@ -67,5 +67,22 @@ public class ShoppingCartDAO {
         pstmt.executeUpdate();
     }
 
+    public int countProductAmount(String memberId, Long productId) {
+        String SQL = "SELECT COUNT(*) AS amount\n" +
+                "FROM shopping_cart\n" +
+                "WHERE member_id = ? AND product_id = ?\n";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, memberId);
+            pstmt.setLong(2, productId);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
     // public Long countAllProduct
 }

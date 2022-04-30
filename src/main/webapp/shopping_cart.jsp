@@ -22,7 +22,7 @@
     %>
     <button onclick="location.href='./logout.jsp'">로그아웃</button>
     <button onclick="location.href='./shopping_cart.jsp'">장바구니</button>
-    <button>구매기록</button>
+    <button onclick="location.href='./order_history.jsp'">구매기록</button>
     <%
         }
     %>
@@ -55,7 +55,7 @@
                     totalPrice += curProduct.getPrice() * list.get(i).getAmount();
             %>
             <tr>
-                <td><input type="checkbox" name="shopping_cart_id" value="<%=curProduct.getId()%>"></td>
+                <td><input type="checkbox" name="product_id_list" value="<%=curProduct.getId()%>"></td>
                 <td><%= curProduct.getName() %>
                 </td>
                 <td><%= curProduct.getCategory() %>
