@@ -1,0 +1,39 @@
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav > button {
+    margin-left: 1em;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    row-gap: 20px;
+    column-gap: 5%;
+    justify-content: center;
+}
+
+.item {
+    width: 100%;
+    border: 1px solid black;
+}
+
+img {
+    width: 100%;
+}

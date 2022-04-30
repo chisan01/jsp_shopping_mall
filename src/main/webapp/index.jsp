@@ -6,6 +6,7 @@
 <html>
 <head>
     <title>SHOPPING MALL</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <nav>
@@ -13,15 +14,11 @@
         String memberId = (String) session.getAttribute("memberId");
         if (memberId == null) {
     %>
-    <a href="./login.html">
-        <button>로그인</button>
-    </a>
+    <button onclick="location.href='./login.html'">로그인</button>
     <%
     } else {
     %>
-    <a href="./logout.jsp">
-        <button>로그아웃</button>
-    </a>
+    <button onclick="location.href='./logout.jsp'">로그아웃</button>
     <button>장바구니</button>
     <button>구매기록</button>
     <%
@@ -50,10 +47,11 @@
                 ArrayList<Product> list = productDAO.findAllByCategory("all");
                 for(Product p : list) {
             %>
-            <div class="item" style="border: 1px solid black; width: fit-content;">
+            <div class="item">
                 <img src="./img/<%=p.getImageSrc()%>" alt="<%=p.getName()%>">
                 <p><%=p.getName()%></p>
                 <p><%=p.getPrice()%>원</p>
+                <button onclick="location.href=''"></button>
             </div>
             <%
                 }
