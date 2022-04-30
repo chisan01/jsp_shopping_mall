@@ -33,22 +33,24 @@ public class OrderDAO {
         return "";
     }
 
-    public void createOrder(String memberId) throws Exception {
+    public Long createOrder(String memberId) throws Exception {
         String SQL = "INSERT INTO order_detail (member_id, ordered_date) VALUES (?, ?)";
-        PreparedStatement pstmt = conn.prepareStatement(SQL);
+        PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
         pstmt.setString(1, memberId);
         pstmt.setString(2, getDate());
-        pstmt.executeUpdate();
-    }
+        int affectedRows = pstmt.executeUpdate();
 
-    public Long mostRecentOrder() throws Exception {
-        String SQL = "SELECT id FROM order_detail ORDER BY ordered_date DESC";
-        PreparedStatement pstmt = conn.prepareStatement(SQL);
-        ResultSet rs = pstmt.executeQuery();
-        if(rs.next()) {
-            return rs.getLong(1);
+        if (affectedRows == 0) {
+            throw new SQLException("Creating user failed, no rows affected.");
         }
-        return -1L;
+
+        ResultSet generatedKeys = pstmt.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            return generatedKeys.getLong(1);
+        }
+        else {
+            throw new SQLException("Creating user failed, no ID obtained.");
+        }
     }
 
     public void addOrderItem(Long orderId, Long productId, Integer amount) throws Exception {

@@ -37,8 +37,7 @@
         // 장바구니에서 물건을 구매하는 경우
         if (request.getParameter("action").equals("buy")) {
             OrderDAO orderDAO = new OrderDAO();
-            orderDAO.createOrder(memberId);
-            Long orderId = orderDAO.mostRecentOrder();
+            Long orderId = orderDAO.createOrder(memberId);
             for (long productId : productIdList) {
                 int curItemAmount = shoppingCartDAO.countProductAmount(memberId, productId);
                 orderDAO.addOrderItem(orderId, productId, curItemAmount);
