@@ -102,4 +102,37 @@ public class OrderDAO {
         }
         return list;
     }
+
+    public ArrayList<Long> getTop3OrderedProductIdsByCategory(String category) {
+        String SQL;
+        ArrayList<Long> list = new ArrayList<>();
+        PreparedStatement pstmt;
+        try {
+            if(category.equals("all")) {
+                SQL = "SELECT product_id, SUM(amount) AS amount\n" +
+                        "FROM order_item\n" +
+                        "GROUP BY product_id\n" +
+                        "order BY amount DESC\n" +
+                        "LIMIT 3";
+                pstmt = conn.prepareStatement(SQL);
+            }
+            else {
+                SQL = "SELECT product_id, SUM(amount) AS amount\n" +
+                        "FROM order_item JOIN product ON order_item.product_id = product.id\n" +
+                        "WHERE product.category = ?\n" +
+                        "GROUP BY product_id\n" +
+                        "order BY amount DESC\n" +
+                        "LIMIT 3;";
+                pstmt = conn.prepareStatement(SQL);
+                pstmt.setString(1, category);
+            }
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getLong(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

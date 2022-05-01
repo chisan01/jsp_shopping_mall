@@ -3,6 +3,7 @@
 <%@ page import="com.example.myhompage.product.Product" %>
 <%@ page import="com.example.myhompage.shoppingCart.ShoppingCartDAO" %>
 <%@ page import="com.example.myhompage.shoppingCart.ShoppingCart" %>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -15,17 +16,16 @@
     <%
         String memberId = (String) session.getAttribute("memberId");
         if (memberId == null) {
-    %>
-    <button onclick="location.href='./login.html'">로그인</button>
-    <%
-    } else {
+            PrintWriter script = response.getWriter();
+            script.println("<script>");
+            script.println("alert('로그인이 필요합니다.')");
+            script.println("location.href = 'login.html'");
+            script.println("</script>");
+        }
     %>
     <button onclick="location.href='./logout.jsp'">로그아웃</button>
     <button onclick="location.href='./shopping_cart.jsp'">장바구니</button>
     <button onclick="location.href='./order_history.jsp'">구매기록</button>
-    <%
-        }
-    %>
 </nav>
 <header>
     <a href="./index.jsp">
@@ -70,7 +70,8 @@
             %>
             </tbody>
         </table>
-        <h5><%="총 가격 = " + totalPrice%></h5>
+        <h5><%="총 가격 = " + totalPrice%>
+        </h5>
         <button type="submit" name="action" value="delete">선택한 제품 삭제</button>
         <button type="submit" name="action" value="buy">선택한 제품 구매</button>
     </form>

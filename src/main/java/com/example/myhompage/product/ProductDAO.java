@@ -27,11 +27,10 @@ public class ProductDAO {
         PreparedStatement pstmt;
         ArrayList<Product> list = new ArrayList<>();
         try {
-            if(category.equals("all")) {
+            if (category.equals("all")) {
                 SQL = "SELECT * FROM product ORDER BY id DESC";
                 pstmt = conn.prepareStatement(SQL);
-            }
-            else {
+            } else {
                 SQL = "SELECT * FROM product WHERE category = ? ORDER BY id DESC";
                 pstmt = conn.prepareStatement(SQL);
                 pstmt.setString(1, category);
@@ -72,6 +71,33 @@ public class ProductDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public ArrayList<Product> findAllByNameKeyword(String keyword) {
+        String SQL;
+        PreparedStatement pstmt;
+        ArrayList<Product> list = new ArrayList<>();
+        try {
+            SQL = "SELECT *\n" +
+                    "FROM product\n" +
+                    "WHERE product.name LIKE ?\n" +
+                    "order BY name DESC";
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, "%" + keyword + "%");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getLong(1));
+                product.setName(rs.getString(2));
+                product.setPrice(rs.getInt(3));
+                product.setImageSrc(rs.getString(4));
+                product.setCategory(rs.getString(5));
+                list.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
 

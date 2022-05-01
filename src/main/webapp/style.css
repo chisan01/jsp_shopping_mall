@@ -1,31 +1,32 @@
-footer {
-    margin-top: 3em;
-}
-
-table {
-    width: 100%;
-    border: 1px solid #444444;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid #444444;
-    padding: 0.5em;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 nav {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    padding: 1rem;
 }
 
 nav > button {
     margin-left: 1em;
+    font-size: 1.3rem;
 }
 
 header {
     display: flex;
     justify-content: center;
+    margin-bottom: 2rem;
+}
+
+header * {
+    font-size: 4rem;
+    font-weight: bold;
+    color: hsl(0, 0%, 27%);
+    text-decoration: none;
 }
 
 ul {
@@ -33,20 +34,100 @@ ul {
     list-style-type: none;
     flex-direction: row;
     justify-content: space-around;
+    padding: 0.7rem;
+    background: hsl(0, 0%, 27%);
+    margin: 1rem;
 }
 
-.container {
+ul * {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+ul button, input {
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: black;
+}
+
+footer {
+    padding: 2em;
+    min-height: 5em;
+    background: hsl(0, 0%, 50%);
+    color: white;
     width: 100%;
-    display: grid;
-    grid-template-columns: 25% 25% 25%;
-    row-gap: 20px;
-    column-gap: 5%;
+}
+
+table {
+    width: 100%;
+    border: 1px solid hsl(0, 0%, 27%);
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid hsl(0, 0%, 27%);
+    padding: 0.5em;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: hsl(0, 0%, 90%);
+}
+
+body > div {
+    width: min(70rem, 100vw);
+}
+
+main {
+    width: 100%;
+    background: hsl(0, 0%, 94%);
+    padding: 1rem 3rem 3rem;
+}
+
+#popular {
+    display: flex;
+    background: bisque;
+    padding: 1em;
+    margin: 2em;
     justify-content: center;
 }
 
-.item {
+#popular > .container {
     width: 100%;
-    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    row-gap: 20px;
+}
+
+#normal {
+    margin: 1em;
+}
+
+#normal > .container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    row-gap: 20px;
+    justify-content: center;
+}
+
+#normal > h2 {
+    text-align: center;
+    margin: 1em;
+}
+
+.item {
+    width: 10rem;
+    background: white;
+    padding: 0.5rem;
+}
+
+.item > p {
+    margin: 0.2em 0;
 }
 
 img {

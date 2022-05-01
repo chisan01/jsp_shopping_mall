@@ -29,7 +29,10 @@
     System.out.println("productId = " + productId);
     try {
         shoppingCartDAO.addProduct(memberId, productId);
-        response.sendRedirect("index.jsp");
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("history.back()");
+        script.println("</script>");
     } catch (Exception e) {
         e.printStackTrace();
         PrintWriter script = response.getWriter();
