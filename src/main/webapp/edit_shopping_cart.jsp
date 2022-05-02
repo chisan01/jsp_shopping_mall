@@ -47,7 +47,11 @@
         for (long productId : productIdList) {
             shoppingCartDAO.delProduct(productId);
         }
-        response.sendRedirect("shopping_cart.jsp");
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('구매 완료!')");
+        script.println("location.href = 'shopping_cart.jsp'");
+        script.println("</script>");
 
     } catch (Exception e) {
         e.printStackTrace();

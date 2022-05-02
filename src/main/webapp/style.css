@@ -137,16 +137,65 @@ main.list {
 .highlight {
     display: flex;
     background: var(--top3-bg-color);
-    padding: 1.5em;
+    padding: 1em;
+    border: 0.5em solid var(--main-logo-color);
     margin-top: 0.5em;
     margin-bottom: 2em;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .highlight > .container {
     width: 100%;
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
+    display: flex;
+    padding: 0;
+}
+
+.top30_item {
+    position: relative;
+    border-radius: 7px;
+    height: 15em;
+    width: 40em;
+    background: var(--item-bg-color);
+    padding: 1em;
+    margin: 1em;
+    box-shadow: 3px 3px 13px 5px rgba(0, 0, 0, 0.15);
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.top30_item h3 {
+    color: var(--main-logo-color);
+    font-size: 3em;
+    display: block;
+    margin-left: 0.2em;
+}
+
+.top30_item img {
+    height: 100%;
+    width: fit-content;
+}
+
+.top30_item .product_detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1em;
+}
+
+.top30_item .product_detail * {
+    font-size: 1.5rem;
+    width: 100%;
+}
+
+button.next, button.prev{
+    font-size: 3em;
+    color: var(--main-logo-color);
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    transform: translateX(-0.5em);
 }
 
 .highlight > h2 {
@@ -171,12 +220,23 @@ main.list {
     margin: 1em;
 }
 
+.reveal{
+    bottom: -100px;
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+.reveal.active{
+    bottom: 0;
+    opacity: 1;
+}
+
 .item {
+    position: relative;
     border-radius: 7px;
     width: 10rem;
     background: var(--item-bg-color);
     padding: 1em;
-    -webkit-box-shadow: 3px 3px 13px 5px rgba(0, 0, 0, 0.15);
     box-shadow: 3px 3px 13px 5px rgba(0, 0, 0, 0.15);
     font-weight: bold;
     display: flex;
@@ -185,7 +245,6 @@ main.list {
 
 .item:hover {
     transform: scale(1.05, 1.05);
-    -webkit-box-shadow: 3px 3px 13px 6px rgba(0, 0, 0, 0.25);
     box-shadow: 3px 3px 13px 6px rgba(0, 0, 0, 0.25);
 }
 
