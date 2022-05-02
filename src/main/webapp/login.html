@@ -6,25 +6,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <a href="./index.jsp">
-        <h1>SHOPPING MALL</h1>
-    </a>
-</header>
-<main>
-    <form action="login.jsp" method="post">
-        <label for="memberId"><b>아이디</b></label>
-        <input id="memberId" type="text" placeholder="Enter ID" name="memberId" required>
+<div>
+    <nav>
+    </nav>
+    <header>
+        <a href="./index.jsp">
+            <h1>SHOPPING MALL</h1>
+        </a>
+    </header>
+    <main>
+        <section class="login-board">
+            <h2>로그인</h2>
+            <form class="login" action="login.jsp" method="post">
+                <label for="memberId"><b>아이디</b></label>
+                <input id="memberId" type="text" placeholder="Enter ID" name="memberId" required>
 
-        <label for="memberPassword"><b>패스워드</b></label>
-        <input id="memberPassword" type="password" placeholder="Enter Password" name="memberPassword" required>
+                <label for="memberPassword"><b>패스워드</b></label>
+                <input id="memberPassword" type="password" placeholder="Enter Password" name="memberPassword" required>
 
-        <button type="submit">로그인</button>
-    </form>
-    <a href="./register.html">회원가입</a>
-</main>
-<footer>
-    제작자 GitHub : https://github.com/chisan01
-</footer>
+                <button type="submit">로그인</button>
+                <button type="button" onclick="location.href='./register.html'">회원가입</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        제작자 GitHub : https://github.com/chisan01
+    </footer>
+</div>
 </body>
 </html>

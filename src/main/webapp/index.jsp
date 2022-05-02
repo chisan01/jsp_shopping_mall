@@ -35,22 +35,22 @@
             <h1>SHOPPING MALL</h1>
         </a>
     </header>
-    <main>
+    <main class="list">
         <aside id="category">
             <ul>
-                <li><a href="./index.jsp">전체</a></li>
-                <li><a href="./index.jsp?category=book">도서</a></li>
-                <li><a href="./index.jsp?category=clothes">의류</a></li>
-                <li><a href="./index.jsp?category=food">식품</a></li>
+                <li><button onclick="location.href='./index.jsp'">전체</button></li>
+                <li><button onclick="location.href='./index.jsp?category=book'">도서</button></li>
+                <li><button onclick="location.href='./index.jsp?category=clothes'">의류</button></li>
+                <li><button onclick="location.href='./index.jsp?category=food'">식품</button></li>
                 <li>
-                    <form action="search_result.jsp" method="post" >
+                    <form action="search_result.jsp" method="post">
                         <input type="search" name="keyword" id="keyword">
                         <button type="submit">검색</button>
                     </form>
                 </li>
             </ul>
         </aside>
-        <section id="popular">
+        <section class="highlight">
             <h2>누적판매량 TOP 3</h2>
             <div class="container">
                 <%
@@ -63,21 +63,23 @@
                 <div class="item">
                     <h3><%=i + 1%>
                     </h3>
+                    <p class="empty"></p>
                     <img src="./img/<%=p.getImageSrc()%>" alt="<%=p.getName()%>">
                     <p><%=p.getName()%>
                     </p>
-                    <p><%=p.getPrice()%>원</p>
+                    <p class="price"><%=p.getPrice()%>원</p>
                     <form action="add_shopping_cart.jsp" method="POST">
                         <input type="hidden" name="productId" value="<%=p.getId()%>">
                         <button type="submit">장바구니에 추가</button>
                     </form>
+                    <p class="empty"></p>
                 </div>
                 <%
                     }
                 %>
             </div>
         </section>
-        <section id="normal">
+        <section class="normal">
             <div class="container">
                 <%
                     productDAO = new ProductDAO();
@@ -85,14 +87,16 @@
                     for (Product p : list) {
                 %>
                 <div class="item">
+                    <p class="empty"></p>
                     <img src="./img/<%=p.getImageSrc()%>" alt="<%=p.getName()%>">
                     <p><%=p.getName()%>
                     </p>
-                    <p><%=p.getPrice()%>원</p>
+                    <p class="price"><%=p.getPrice()%>원</p>
                     <form action="add_shopping_cart.jsp" method="POST">
                         <input type="hidden" name="productId" value="<%=p.getId()%>">
                         <button type="submit">장바구니에 추가</button>
                     </form>
+                    <p class="empty"></p>
                 </div>
                 <%
                     }

@@ -6,30 +6,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <a href="./index.jsp">
-        <h1>SHOPPING MALL</h1>
-    </a>
-</header>
-<main>
-    <form action="register.jsp" method="POST">
-        <h2>회원가입</h2>
+<div>
+    <header>
+        <a href="./index.jsp">
+            <h1>SHOPPING MALL</h1>
+        </a>
+    </header>
+    <main>
+        <section class="login-board">
+            <h2>회원가입</h2>
+            <form class="login" action="register.jsp" method="POST">
 
-        <label for="memberId"><b>아이디</b></label>
-        <input id="memberId" type="text" placeholder="Enter ID" name="id" required>
+                <label for="memberId"><b>아이디</b></label>
+                <input id="memberId" type="text" placeholder="Enter ID" name="id" required>
 
-        <label for="memberPassword"><b>패스워드</b></label>
-        <input id="memberPassword" type="password" placeholder="Enter Password" name="password" required>
+                <label for="memberPassword"><b>패스워드</b></label>
+                <input id="memberPassword" type="password" placeholder="Enter Password" name="password" required>
 
-        <label for="memberEmail"><b>이메일</b></label>
-        <input id="memberEmail" type="email" placeholder="Email" name="email">
+                <label for="memberEmail"><b>이메일</b></label>
+                <input id="memberEmail" type="email" placeholder="Email" name="email">
 
-        <button type="reset">재작성</button>
-        <button type="submit">제출</button>
-    </form>
-</main>
-<footer>
-    제작자 GitHub : https://github.com/chisan01
-</footer>
+                <button type="reset">재작성</button>
+                <button type="submit">제출</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        제작자 GitHub : https://github.com/chisan01
+    </footer>
+</div>
 </body>
 </html>
