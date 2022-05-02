@@ -40,9 +40,9 @@
         <aside id="category">
             <ul>
                 <li><a href="./index.jsp">전체</a></li>
-                <li><a href="./index_book.jsp">도서</a></li>
-                <li><a href="./index_clothes.jsp">의류</a></li>
-                <li><a href="./index_food.jsp">식품</a></li>
+                <li><a href="./index.jsp?category=book">도서</a></li>
+                <li><a href="./index.jsp?category=clothes">의류</a></li>
+                <li><a href="./index.jsp?category=food">식품</a></li>
                 <li>
                     <form action="search_result.jsp" method="post" >
                         <input type="search" name="keyword" id="keyword">

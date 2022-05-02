@@ -108,7 +108,7 @@ public class OrderDAO {
         ArrayList<Long> list = new ArrayList<>();
         PreparedStatement pstmt;
         try {
-            if(category.equals("all")) {
+            if(category == null) {
                 SQL = "SELECT product_id, SUM(amount) AS amount\n" +
                         "FROM order_item\n" +
                         "GROUP BY product_id\n" +

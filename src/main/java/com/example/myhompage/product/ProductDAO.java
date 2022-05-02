@@ -27,7 +27,7 @@ public class ProductDAO {
         PreparedStatement pstmt;
         ArrayList<Product> list = new ArrayList<>();
         try {
-            if (category.equals("all")) {
+            if (category == null) {
                 SQL = "SELECT * FROM product ORDER BY id DESC";
                 pstmt = conn.prepareStatement(SQL);
             } else {
