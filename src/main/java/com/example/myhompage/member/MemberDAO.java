@@ -24,22 +24,18 @@ public class MemberDAO {
 
     public void login(String memberId, String memberPassword) throws Exception {
         String SQL = "SELECT password FROM member WHERE id = ?";
-        try {
-            pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, memberId);
-            System.out.println("memberId = " + memberId + ", memberPassword = " + memberPassword);
-            rs = pstmt.executeQuery();
-            if (rs.next()) {
-                if (rs.getString(1).equals(memberPassword)) {
-                    return;
-                } else {
-                    throw new WrongPasswordException();
-                }
+        pstmt = conn.prepareStatement(SQL);
+        pstmt.setString(1, memberId);
+        System.out.println("memberId = " + memberId + ", memberPassword = " + memberPassword);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            if (rs.getString(1).equals(memberPassword)) {
+                return;
+            } else {
+                throw new WrongPasswordException();
             }
-            throw new NotExistMemberException();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        throw new NotExistMemberException();
     }
 
     public void join(Member member) throws Exception {

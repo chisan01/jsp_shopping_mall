@@ -81,7 +81,7 @@
             top30item_detail.children[2].children[0].value = products[top30index].id;
         }
 
-        setInterval(next, 2000);
+        setInterval(next, 3000);
 
     </script>
 </head>

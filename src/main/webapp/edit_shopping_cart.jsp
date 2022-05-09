@@ -47,11 +47,19 @@
         for (long productId : productIdList) {
             shoppingCartDAO.delProduct(productId);
         }
-        PrintWriter script = response.getWriter();
-        script.println("<script>");
-        script.println("alert('구매 완료!')");
-        script.println("location.href = 'shopping_cart.jsp'");
-        script.println("</script>");
+        if (request.getParameter("action").equals("buy")) {
+            PrintWriter script = response.getWriter();
+            script.println("<script>");
+            script.println("alert('구매 완료!')");
+            script.println("location.href = 'shopping_cart.jsp'");
+            script.println("</script>");
+        }
+        else {
+            PrintWriter script = response.getWriter();
+            script.println("<script>");
+            script.println("location.href = 'shopping_cart.jsp'");
+            script.println("</script>");
+        }
 
     } catch (Exception e) {
         e.printStackTrace();
